@@ -1,0 +1,84 @@
+.edit-profile-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f4f6f9;
+  padding: 20px;
+}
+
+.edit-profile-card {
+  width: 100%;
+  max-width: 500px;
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+
+  /* ✅ FIX: make all text visible inside card */
+  color: #111;
+}
+
+.edit-profile-card h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 22px;
+  color: #111;
+}
+
+/* INPUT + TEXTAREA */
+.edit-profile-card input,
+.edit-profile-card textarea {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+
+  /* ✅ FIX: typing text visibility */
+  color: #000;
+  background: #fff;
+}
+
+/* focus effect */
+.edit-profile-card input:focus,
+.edit-profile-card textarea:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 4px rgba(74,144,226,0.3);
+}
+
+/* textarea resize */
+.edit-profile-card textarea {
+  resize: none;
+}
+
+/* file input */
+.edit-profile-card input[type="file"] {
+  border: none;
+  padding: 5px;
+}
+
+/* placeholder visibility */
+.edit-profile-card input::placeholder,
+.edit-profile-card textarea::placeholder {
+  color: #888;
+}
+
+/* button */
+.edit-profile-card button {
+  width: 100%;
+  padding: 12px;
+  background: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.edit-profile-card button:hover {
+  background: #357bd8;
+}
