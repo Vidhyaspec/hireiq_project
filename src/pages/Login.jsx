@@ -28,7 +28,15 @@ export default function Login() {
 
     axios.post(
       `${API_URL}/login.php`,
-      formData
+      {
+    email: email,
+    password: password
+  },
+  {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  }
     )
     .then((res) => {
 
