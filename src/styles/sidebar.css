@@ -120,3 +120,25 @@
   0 10px 20px rgba(239,68,68,0.35);
 
 }
+
+@media (max-width: 768px) {
+
+  .sidebar {
+    width: 100%;
+    position: relative;
+    height: auto;
+    padding: 10px;
+  }
+
+  .sidebar-links {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar-links a,
+  .sidebar-logout {
+    width: 100%;
+    text-align: center;
+  }
+
+}

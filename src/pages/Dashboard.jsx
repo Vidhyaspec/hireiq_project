@@ -11,6 +11,7 @@ import {
 } from "recharts";
 
 import "../styles/dashboard.css";
+import API_URL from "../config";
 
 export default function Dashboard() {
 
@@ -31,7 +32,7 @@ export default function Dashboard() {
   useEffect(() => {
 
     axios.get(
-      "http://localhost/hireiq-project/backend/api/dashboard_stats.php"
+      `${API_URL}/dashboard_stats.php`
     )
     .then((res) => {
 

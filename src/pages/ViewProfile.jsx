@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "../styles/viewprofile.css";
+import API_URL from "../config";
 
 export default function ViewProfile() {
 
@@ -14,7 +15,7 @@ export default function ViewProfile() {
     if (!user?.id) return;
 
     axios.get(
-      `http://localhost/hireiq-project/backend/api/get_profile.php?user_id=${user.id}`
+      `${API_URL}/get_profile.php?user_id=${user.id}`
     )
     .then((res) => {
       setProfile(res.data);
@@ -33,7 +34,7 @@ export default function ViewProfile() {
         {profile.profile_pic && (
 
   <img
-    src={`http://localhost/hireiq-project/backend/uploads/${profile.profile_pic}`}
+    src={`${API_URL.replace('/api', '')}/uploads/${profile.profile_pic}`}
     alt="Profile"
 
     style={{

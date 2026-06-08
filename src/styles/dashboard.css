@@ -166,3 +166,98 @@
   }
 
 }
+
+@media(max-width:768px){
+
+  .dashboard-page{
+
+    padding:15px;
+
+  }
+
+  .main-content{
+
+    margin-left:0;
+
+  }
+
+  .welcome-box{
+
+    padding:20px;
+
+  }
+
+  .welcome-box h1{
+
+    font-size:24px;
+
+  }
+
+  .welcome-box p{
+
+    font-size:14px;
+
+  }
+
+  .stats-grid{
+
+    grid-template-columns:1fr;
+
+  }
+
+  .stat-card{
+
+    padding:20px;
+
+  }
+
+  .stat-card h2{
+
+    font-size:28px;
+
+  }
+
+  .graph-card{
+
+    padding:15px;
+
+  }
+
+  .graph-card h2{
+
+    font-size:20px;
+
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .main-content,
+  .jobs-container,
+  .profile-container,
+  .applicants-container {
+    margin-left: 0 !important;
+    width: 100%;
+    padding: 15px;
+  }
+
+}
+
+@media(max-width:768px){
+
+  .dashboard-page{
+
+    padding:15px;
+
+  }
+
+  .main-content{
+
+    margin-left:0;
+
+    width:100%;
+
+  }
+
+}

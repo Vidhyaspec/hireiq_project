@@ -6,6 +6,8 @@ import axios from "axios";
 
 import { useParams,useNavigate } from "react-router-dom";
 
+import API_URL from "../config";
+
 function EditJob() {
 
   const { id } = useParams();
@@ -27,7 +29,7 @@ function EditJob() {
   const fetchJob = async () => {
 
     const response = await axios.get(
-      `http://localhost/backend/api/get_single_job.php?id=${id}`
+      `${API_URL}/get_single_job.php?id=${id}`
     );
 
     setTitle(response.data.title);
@@ -52,7 +54,7 @@ function EditJob() {
     formData.append("description",description);
 
     const response = await axios.post(
-      "http://localhost/backend/api/update_job.php",
+      '${API_URL}/update_job.php',
       formData
     );
 

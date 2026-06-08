@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 import "../styles/editprofile.css";
+import API_URL from "../config";
 
 export default function EditProfile() {
 
@@ -23,9 +25,10 @@ export default function EditProfile() {
     if (!user?.id) return;
 
     axios.get(
-      `http://localhost/hireiq-project/backend/api/get_profile.php?user_id=${user.id}`
+      `${API_URL}/get_profile.php?user_id=${user.id}`
     )
     .then((res) => {
+
       setProfile({
         bio: res.data.bio || "",
         skills: res.data.skills || "",
@@ -34,57 +37,86 @@ export default function EditProfile() {
         github: res.data.github || "",
         linkedin: res.data.linkedin || ""
       });
+
     })
     .catch((err) => {
       console.log("LOAD ERROR:", err);
+      toast.error("Failed to load profile!");
     });
 
-  }, []);
+  }, [user?.id]);
 
-  // UPDATE PROFILE (OPTION B LOGIC)
+  // UPDATE PROFILE
   const updateProfile = () => {
 
-    if (!image) {
-    alert("Please select a profile image before updating!");
+  if (!profile.bio && !profile.skills) {
+    toast.error("Bio and Skills are required!");
     return;
   }
 
-    // ✅ ONLY REQUIRED FIELDS CHECK
-    if (!profile.bio || !profile.skills) {
-      alert("Bio and Skills are required!");
-      return;
-    }
+  if (!profile.bio) {
+    toast.error("Bio is required!");
+    return;
+  }
 
-    const formData = new FormData();
+  if (!profile.skills) {
+    toast.error("Skills are required!");
+    return;
+  }
 
-    formData.append("user_id", user.id);
-    formData.append("bio", profile.bio);
-    formData.append("skills", profile.skills);
+  if (!image) {
+    toast.error("Profile picture is required!");
+    return;
+  }
 
-    // ✅ OPTIONAL FIELDS (safe fallback)
-    formData.append("education", profile.education || "");
-    formData.append("experience", profile.experience || "");
-    formData.append("github", profile.github || "");
-    formData.append("linkedin", profile.linkedin || "");
+  const formData = new FormData();
 
-      formData.append("profile_pic", image);
-    
+  formData.append("user_id", user.id);
+  formData.append("bio", profile.bio);
+  formData.append("skills", profile.skills);
+  formData.append("education", profile.education || "");
+  formData.append("experience", profile.experience || "");
+  formData.append("github", profile.github || "");
+  formData.append("linkedin", profile.linkedin || "");
+  formData.append("profile_pic", image);
 
-    axios.post(
-      "http://localhost/hireiq-project/backend/api/update_profile.php",
-      formData
-    )
-    .then((res) => {
-      alert(res.data.message);
-    })
-    .catch((err) => {
-      console.log("UPDATE ERROR:", err);
+  axios.post(
+    '${API_URL}/update_profile.php',
+    formData
+  )
+  .then((res) => {
+
+    toast.success(res.data.message);
+
+    // 🔥 IMPORTANT FIX: reload updated profile from DB
+    return axios.get(
+      `${API_URL}/get_profile.php?user_id=${user.id}`
+    );
+
+  })
+  .then((res) => {
+
+    // 🔥 update UI with latest DB values
+    setProfile({
+      bio: res.data.bio || "",
+      skills: res.data.skills || "",
+      education: res.data.education || "",
+      experience: res.data.experience || "",
+      github: res.data.github || "",
+      linkedin: res.data.linkedin || ""
     });
 
-  };
+    setImage(null); // reset image input
+
+  })
+  .catch((err) => {
+    console.log(err);
+    toast.error("Profile update failed");
+  });
+
+};
 
   return (
-
     <div className="edit-profile-container">
 
       <div className="edit-profile-card">
@@ -147,6 +179,7 @@ export default function EditProfile() {
 
         <input
           type="file"
+          accept="image/*"
           onChange={(e) => setImage(e.target.files[0])}
         />
 
@@ -157,7 +190,5 @@ export default function EditProfile() {
       </div>
 
     </div>
-
   );
-
 }

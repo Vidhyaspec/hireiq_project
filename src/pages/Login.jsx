@@ -1,111 +1,77 @@
 import { useState, useContext } from "react";
-
 import axios from "axios";
-
 import { useNavigate } from "react-router-dom";
-
 import { toast } from "react-toastify";
-
 import { AuthContext } from "../context/AuthContext";
-
 import "../styles/auth.css";
+import API_URL from "../config";
 
 export default function Login() {
 
-  const [email, setEmail] =
-    useState("");
-
-  const [password, setPassword] =
-    useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
-
-  const { login } =
-    useContext(AuthContext);
+  const { login } = useContext(AuthContext);
 
   const loginUser = () => {
 
-    // VALIDATION
     if (!email || !password) {
-
-      toast.warning(
-        "Please fill all fields"
-      );
-
+      toast.warning("Please fill all fields");
       return;
-
     }
 
+    // ✅ FORM DATA (MOST STABLE WITH PHP)
+    const formData = new FormData();
+    formData.append("email", email);
+    formData.append("password", password);
+
     axios.post(
-
-      "http://localhost/hireiq-project/backend/api/login.php",
-
-      {
-        email,
-        password
-      }
-
+      `${API_URL}/login.php`,
+      formData
     )
-
     .then((res) => {
 
-      if (
-        res.data.status === "success"
-      ) {
+      if (res.data.status === "success") {
 
-        // SUCCESS TOAST
-        toast.success(
-          "Login Successful ✅"
-        );
+        localStorage.setItem("user", JSON.stringify(res.data.user));
 
-        login(res.data.user);
+        if (login) login(res.data.user);
 
-        navigate("/dashboard");
+        toast.success("Login successful");
+
+        navigate("/view-jobs");
 
       } else {
-
-        toast.error(
-          res.data.message
-        );
-
+        toast.error(res.data.message);
       }
 
     })
-
-    .catch(() => {
-
-      toast.error(
-        "Server Error"
-      );
-
+    .catch((err) => {
+      console.log(err);
+      toast.error("Server error");
     });
-
   };
 
   return (
-
     <div className="auth-container">
 
       <div className="auth-card">
 
-        <h2>
-          Login
-        </h2>
+        <h2>Login</h2>
 
         <input
           type="email"
           placeholder="Email"
-          onChange={(e) =>
-            setEmail(e.target.value)
-          }
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
 
         <input
           type="password"
           placeholder="Password"
-          onChange={(e) =>
-            setPassword(e.target.value)
-          }
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
 
         <button onClick={loginUser}>
@@ -115,7 +81,5 @@ export default function Login() {
       </div>
 
     </div>
-
   );
-
 }

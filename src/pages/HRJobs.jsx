@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import API_URL from "../config";
 
 export default function HRJobs() {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -24,7 +25,7 @@ export default function HRJobs() {
 
   const loadJobs = () => {
     axios
-      .get("http://localhost/hireiq-project/backend/api/get_jobs.php")
+      .get('${API_URL}/get_jobs.php')
       .then((res) => setJobs(res.data))
       .catch((err) => console.error("Failed to load jobs", err));
   };
@@ -57,7 +58,7 @@ export default function HRJobs() {
       formData.append("id", editId);
       axios
         .post(
-          "http://localhost/hireiq-project/backend/api/update_job.php",
+          '${API_URL}/update_job.php',
           formData
         )
         .then(() => {
@@ -69,8 +70,8 @@ export default function HRJobs() {
     } else {
       axios
         .post(
-          "http://localhost/hireiq-project/backend/api/post_job.php",
-          formData
+          '${API_URL}/post_job.php',
+          formDatan
         )
         .then(() => {
           alert("Job posted!");
@@ -98,7 +99,7 @@ export default function HRJobs() {
     if (!window.confirm("Are you sure you want to delete this job?")) return;
     axios
       .get(
-        `http://localhost/hireiq-project/backend/api/delete_job.php?id=${id}`
+        `${API_URL}/delete_job.php?id=${id}`
       )
       .then(() => {
         alert("Job deleted.");

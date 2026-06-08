@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import API_URL from "../config";
 
 import "../styles/profile.css";
 
@@ -15,7 +16,7 @@ export default function Profile() {
   useEffect(() => {
 
     axios.get(
-      "http://localhost/hireiq-project/backend/api/get_applications.php"
+      '${API_URL}//get_applications.php'
     )
     .then((res) => {
 
@@ -104,7 +105,7 @@ export default function Profile() {
             </p>
 
             <a
-              href={`http://localhost/hireiq-project/backend/uploads/${app.resume}`}
+              href= {`${API_URL.replace('/api', '')}/uploads/${app.resume}`}
               target="_blank"
               rel="noreferrer"
             >

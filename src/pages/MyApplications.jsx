@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "../styles/myapplications.css";
+import API_URL from "../config";
 
 export default function MyApplications() {
 
@@ -13,14 +14,19 @@ export default function MyApplications() {
     if (!user?.id) return;
 
     axios.get(
-      `http://localhost/hireiq-project/backend/api/get_my_applications.php?user_id=${user.id}`
+      `${API_URL}/get_my_applications.php.php?user_id=${user.id}`
     )
     .then((res) => {
-      setApplications(res.data || []);
-    })
-    .catch(err => console.log(err));
+      setApplications(Array.isArray(res.data) ? res.data : []);
+  })
+  .catch(err => console.log(err));
 
-  }, [user.id]);
+}, [user?.id]);
+
+      
+  const safeApplications = Array.isArray(applications)
+    ? applications
+    : [];
 
   return (
 
@@ -28,26 +34,24 @@ export default function MyApplications() {
 
       <h1 className="myapps-title">My Applications</h1>
 
-      {applications.length === 0 ? (
-       
-       <div className="empty-state">
+      {safeApplications.length === 0 ? (
 
-  <img
-    src="https://cdn-icons-png.flaticon.com/512/6134/6134065.png"
-    alt="empty"
-  />
+        <div className="empty-state">
 
-  <h2>No Applications Yet</h2>
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/6134/6134065.png"
+            alt="empty"
+          />
 
-  <p>
-    Apply for jobs to see them here.
-  </p>
+          <h2>No Applications Yet</h2>
 
-</div>
+          <p>Apply for jobs to see them here.</p>
+
+        </div>
 
       ) : (
 
-        applications.map((app) => (
+        safeApplications.map((app) => (
 
           <div className="myapp-card" key={app.id}>
 
@@ -61,20 +65,20 @@ export default function MyApplications() {
               <b>Status:</b>{" "}
               <span style={{
                 color:
-                  app.status === "Shortlisted"
+                  app.status?.toLowerCase() === "shortlisted"
                     ? "green"
                     : app.status === "Rejected"
                     ? "red"
                     : "orange",
                 fontWeight: "bold"
               }}>
-                {app.status}
+                {app.status?.toUpperCase()}
               </span>
             </div>
 
             <a
               className="resume-btn"
-              href={`http://localhost/hireiq-project/backend/uploads/${app.resume}`}
+              href={`${API_URL.replace('/api', '')}/uploads/${app.resume}`}
               target="_blank"
               rel="noreferrer"
             >
@@ -88,6 +92,5 @@ export default function MyApplications() {
       )}
 
     </div>
-
   );
 }

@@ -6,6 +6,8 @@ import { toast } from "react-toastify";
 
 import "../styles/addjob.css";
 
+import API_URL from "../config";
+
 export default function AddJob() {
 
   const user = JSON.parse(
@@ -93,7 +95,7 @@ export default function AddJob() {
 
     axios.post(
 
-      "http://localhost/hireiq-project/backend/api/add_job.php",
+      '${API_URL}/add_job.php',
 
       formData
 

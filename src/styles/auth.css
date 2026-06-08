@@ -1,32 +1,25 @@
-.auth-container {
-  height: 100vh;
+.auth-container{
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  min-height:100vh;
 
-  padding: 20px;
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  padding:20px;
+
 }
 
-.auth-card {
-  width: 400px;
+.auth-card{
 
-  background: rgba(255,255,255,0.1);
+  width:100%;
 
-  border: 1px solid rgba(255,255,255,0.2);
+  max-width:450px;
 
-  backdrop-filter: blur(15px);
+  margin:auto;
 
-  padding: 40px;
-
-  border-radius: 24px;
-
-  box-shadow:
-    0 8px 32px rgba(0,0,0,0.3);
-
-  color: white;
-
-  animation: fadeIn 0.5s ease;
 }
 
 .brand-logo {
@@ -136,6 +129,39 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+
+}
+
+@media (max-width:768px){
+
+  .auth-card{
+    width:95%;
+    padding:25px;
+  }
+
+}
+
+@media(max-width:768px){
+
+  .auth-container{
+
+    padding:15px;
+
+    justify-content:center;
+
+    align-items:center;
+
+  }
+
+  .auth-card{
+
+    width:100%;
+
+    max-width:380px;
+
+    margin:auto;
+
   }
 
 }

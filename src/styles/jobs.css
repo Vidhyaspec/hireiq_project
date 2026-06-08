@@ -1,4 +1,4 @@
-.jobs-container {
+ .jobs-container {
 
   padding: 40px;
 
@@ -441,6 +441,125 @@
 
   100%{
     transform:rotate(360deg);
+  }
+
+}
+
+/* ===== MODERN BUTTON STYLES (ADD ONLY, DO NOT REMOVE OLD CSS) ===== */
+
+.btn {
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  transition: 0.25s ease;
+  font-size: 15px;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+/* EDIT */
+.btn-edit {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: white;
+}
+
+/* DELETE */
+.btn-delete {
+  background: linear-gradient(135deg, #dc2626, #ef4444);
+  color: white;
+}
+
+/* APPLY */
+.btn-apply {
+  background: linear-gradient(135deg, #059669, #10b981);
+  color: white;
+}
+
+/* UPDATE */
+.btn-update {
+  background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+  color: white;
+}
+
+@media(max-width:768px){
+
+  .jobs-container{
+
+    margin-left:0;
+
+    padding:15px;
+
+  }
+
+  .job-card{
+
+    padding:18px;
+
+  }
+
+  .job-title{
+
+    font-size:22px;
+
+  }
+
+  .job-actions{
+
+    flex-direction:column;
+
+  }
+
+  .edit-btn,
+  .delete-btn,
+  .update-btn,
+  .apply-btn{
+
+    width:100%;
+
+  }
+
+  .search-box{
+
+    flex-direction:column;
+
+  }
+
+  .search-box input{
+
+    width:100%;
+
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .main-content,
+  .jobs-container,
+  .profile-container,
+  .applicants-container {
+    margin-left: 0 !important;
+    width: 100%;
+    padding: 15px;
+  }
+
+}
+
+@media(max-width:768px){
+
+  .jobs-container{
+
+    margin-left:0;
+
+    width:100%;
+
+    padding:15px;
+
   }
 
 }

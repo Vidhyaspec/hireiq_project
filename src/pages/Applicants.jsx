@@ -3,6 +3,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 import "../styles/jobs.css";
+import API_URL from "../config";
 
 export default function Applicants() {
 
@@ -13,7 +14,7 @@ export default function Applicants() {
   const fetchApplications = () => {
 
     axios.get(
-      "http://localhost/hireiq-project/backend/api/get_applications.php"
+      '${API_URL}/get_applications.php'
     )
 
     .then((res) => {
@@ -38,7 +39,7 @@ export default function Applicants() {
 
     axios.post(
 
-      "http://localhost/hireiq-project/backend/api/update_status.php",
+      '${API_URL}/update_status.php',
 
       {
         id,
@@ -141,7 +142,7 @@ export default function Applicants() {
                 }}
               >
 
-                {app.status}
+                {app.status?.toUpperCase() || "PENDING"}
 
               </span>
 
@@ -149,7 +150,7 @@ export default function Applicants() {
 
             {/* RESUME BUTTON */}
             <a
-              href={`http://localhost/hireiq-project/backend/uploads/${app.resume}`}
+              href={`${API_URL.replace('/api', '')}/uploads/${app.resume}`}
               target="_blank"
               rel="noreferrer"
 

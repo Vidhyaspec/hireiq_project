@@ -2,6 +2,7 @@ import "./ApplyJob.css";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
+import API_URL from "../config";
 
 function ApplyJob() {
 
@@ -17,7 +18,7 @@ function ApplyJob() {
   const applyJob = async () => {
     try {
       const res = await axios.post(
-        "http://localhost/backend/api/apply_job.php",
+        '${API_URL}/apply_job.php',
         {
           job_id: job.id || 0,
           job_title: job.title || "",

@@ -69,3 +69,16 @@
 .profile-card a:hover {
   transform: scale(1.05);
 }
+
+@media (max-width: 768px) {
+
+  .main-content,
+  .jobs-container,
+  .profile-container,
+  .applicants-container {
+    margin-left: 0 !important;
+    width: 100%;
+    padding: 15px;
+  }
+
+}

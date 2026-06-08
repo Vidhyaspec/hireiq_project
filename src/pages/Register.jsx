@@ -5,6 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 import "../styles/auth.css";
+import API_URL from "../config";
 
 export default function Register() {
 
@@ -18,7 +19,7 @@ export default function Register() {
   const registerUser = () => {
 
   axios.post(
-  "http://localhost/hireiq-project/backend/api/register.php",
+  `${API_URL}/register.php`,
   {
     name,
     email,
