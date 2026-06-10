@@ -18,7 +18,7 @@ function ApplyJob() {
   const applyJob = async () => {
     try {
       const res = await axios.post(
-        '${API_URL}/apply_job.php',
+        `${API_URL}/apply_job.php`,
         {
           job_id: job.id || 0,
           job_title: job.title || "",

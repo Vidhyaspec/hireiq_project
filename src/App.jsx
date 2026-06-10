@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import {
   BrowserRouter,
   Routes,
@@ -35,19 +36,32 @@ import AuthProvider from "./context/AuthContext";
 function AppLayout() {
 
   const location = useLocation();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  // Auto-close sidebar on route change (for mobile navigation)
+  useEffect(() => {
+    setSidebarOpen(false);
+  }, [location.pathname]);
+
+  const showSidebar = !["/", "/register"].includes(location.pathname);
 
   return (
-    <>
-      <Navbar />
+    <div className={`app-wrapper ${sidebarOpen ? "sidebar-active" : ""}`}>
+      <Navbar toggleSidebar={() => setSidebarOpen(!sidebarOpen)} showHamburger={showSidebar} />
 
-      <div style={{ display: "flex" }}>
+      <div className="app-container">
 
-        {/* SIDEBAR FIXED */}
-        {!["/", "/register"].includes(location.pathname) && (
-          <Sidebar />
+        {/* SIDEBAR DYNAMIC */}
+        {showSidebar && (
+          <>
+            <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+            {sidebarOpen && (
+              <div className="sidebar-overlay" onClick={() => setSidebarOpen(false)} />
+            )}
+          </>
         )}
 
-        <div style={{ marginLeft: "220px", width: "100%" }}>
+        <div className="content-container">
 
           <Routes>
 
@@ -153,9 +167,9 @@ function AppLayout() {
               path="/mock-interview"
               element={
                 <ProtectedRoute>
-      <MockInterview />
-    </ProtectedRoute>
-  }
+                  <MockInterview />
+                </ProtectedRoute>
+              }
             />
 
             {/* FALLBACK */}
@@ -165,7 +179,7 @@ function AppLayout() {
 
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

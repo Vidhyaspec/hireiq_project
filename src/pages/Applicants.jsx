@@ -14,7 +14,7 @@ export default function Applicants() {
   const fetchApplications = () => {
 
     axios.get(
-      '${API_URL}/get_applications.php'
+      `${API_URL}/get_applications.php`
     )
 
     .then((res) => {
@@ -38,14 +38,11 @@ export default function Applicants() {
   ) => {
 
     axios.post(
-
-      '${API_URL}/update_status.php',
-
+      `${API_URL}/update_status.php`,
       {
         id,
         status
       }
-
     )
 
     .then((res) => {

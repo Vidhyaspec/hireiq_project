@@ -81,7 +81,7 @@ export default function EditProfile() {
   formData.append("profile_pic", image);
 
   axios.post(
-    '${API_URL}/update_profile.php',
+    `${API_URL}/update_profile.php`,
     formData
   )
   .then((res) => {

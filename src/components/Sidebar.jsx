@@ -6,7 +6,7 @@ import { AuthContext } from "../context/AuthContext";
 
 import "../styles/sidebar.css";
 
-export default function Sidebar() {
+export default function Sidebar({ isOpen, onClose }) {
 
   const { user, logout } =
     useContext(AuthContext);
@@ -16,7 +16,7 @@ export default function Sidebar() {
 
   return (
 
-    <div className="sidebar">
+    <div className={`sidebar ${isOpen ? "open" : ""}`}>
 
       <div className="sidebar-logo">
         HIREIQ

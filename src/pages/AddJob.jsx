@@ -94,11 +94,8 @@ export default function AddJob() {
     );
 
     axios.post(
-
-      '${API_URL}/add_job.php',
-
+      `${API_URL}/add_job.php`,
       formData
-
     )
 
     .then((res) => {

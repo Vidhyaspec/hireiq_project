@@ -14,7 +14,7 @@ export default function MyApplications() {
     if (!user?.id) return;
 
     axios.get(
-      `${API_URL}/get_my_applications.php.php?user_id=${user.id}`
+      `${API_URL}/get_my_applications.php?user_id=${user.id}`
     )
     .then((res) => {
       setApplications(Array.isArray(res.data) ? res.data : []);

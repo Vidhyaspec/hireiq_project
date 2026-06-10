@@ -86,3 +86,123 @@ textarea::placeholder {
   background: #3b82f6;
   border-radius: 10px;
 }
+
+/* ==========================================================================
+   RESPONSIVE LAYOUT SYSTEM
+   ========================================================================== */
+
+.app-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: row;
+  min-height: calc(100vh - 80px);
+  width: 100%;
+}
+
+.content-container {
+  margin-left: 250px; /* Sidebar width */
+  width: calc(100% - 250px);
+  min-height: 100vh;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+/* BRAND WRAPPER & HAMBURGER BUTTON */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.hamburger-btn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: none; /* Hidden on desktop */
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  margin-right: 15px;
+  border-radius: 8px;
+  transition: 0.2s;
+}
+
+.hamburger-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* HIDE NAV LINK DUPLICATES ON DESKTOP */
+@media (min-width: 769px) {
+  .navbar-logged-in .nav-links {
+    display: none;
+  }
+}
+
+/* MOBILE RESPONSIVENESS OVERRIDES */
+@media (max-width: 768px) {
+  .hamburger-btn {
+    display: flex;
+  }
+
+  .app-container {
+    flex-direction: column;
+  }
+
+  .content-container {
+    margin-left: 0 !important;
+    width: 100% !important;
+    margin-top: 80px; /* Offset for fixed top navbar */
+  }
+
+  /* Slide-in Sidebar Drawer */
+  .sidebar {
+    position: fixed !important;
+    top: 80px !important;
+    left: 0 !important;
+    width: 260px !important;
+    height: calc(100vh - 80px) !important;
+    transform: translateX(-100%) ;
+    transition: transform 0.3s ease-in-out !important;
+    z-index: 1100 !important;
+    box-shadow: 5px 0 25px rgba(0,0,0,0.5) !important;
+  }
+
+  .sidebar.open {
+    transform: translateX(0) !important;
+  }
+
+  .sidebar-overlay {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 80px);
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 1050;
+    transition: opacity 0.3s ease;
+  }
+
+  /* Force responsive margins for individual pages */
+  .dashboard-page,
+  .jobs-container,
+  .profile-container,
+  .edit-profile-container,
+  .view-profile-container,
+  .myapps-container,
+  .addjob-container,
+  .mock-page {
+    padding: 20px 15px !important;
+    width: 100% !important;
+    min-height: calc(100vh - 80px) !important;
+  }
+
+  .main-content {
+    margin-left: 0 !important;
+  }
+}
