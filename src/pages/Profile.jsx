@@ -16,7 +16,7 @@ export default function Profile() {
   useEffect(() => {
 
     axios.get(
-      '${API_URL}//get_applications.php'
+      `${API_URL}/get_applications.php`
     )
     .then((res) => {
 

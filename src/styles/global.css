@@ -136,15 +136,17 @@ textarea::placeholder {
   background: rgba(255, 255, 255, 0.1);
 }
 
-/* HIDE NAV LINK DUPLICATES ON DESKTOP */
-@media (min-width: 769px) {
-  .navbar-logged-in .nav-links {
-    display: none;
-  }
+/* HIDE NAV LINK DUPLICATES ALWAYS WHEN LOGGED IN */
+.navbar-logged-in .nav-links {
+  display: none;
 }
 
 /* MOBILE RESPONSIVENESS OVERRIDES */
 @media (max-width: 768px) {
+  .navbar {
+    padding: 0 16px !important;
+  }
+
   .hamburger-btn {
     display: flex;
   }

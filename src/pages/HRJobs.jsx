@@ -25,7 +25,7 @@ export default function HRJobs() {
 
   const loadJobs = () => {
     axios
-      .get('${API_URL}/get_jobs.php')
+      .get(`${API_URL}/get_jobs.php`)
       .then((res) => setJobs(res.data))
       .catch((err) => console.error("Failed to load jobs", err));
   };
@@ -58,7 +58,7 @@ export default function HRJobs() {
       formData.append("id", editId);
       axios
         .post(
-          '${API_URL}/update_job.php',
+          `${API_URL}/update_job.php`,
           formData
         )
         .then(() => {
@@ -70,8 +70,8 @@ export default function HRJobs() {
     } else {
       axios
         .post(
-          '${API_URL}/post_job.php',
-          formDatan
+          `${API_URL}/post_job.php`,
+          formData
         )
         .then(() => {
           alert("Job posted!");

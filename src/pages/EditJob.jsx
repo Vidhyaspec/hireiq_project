@@ -54,7 +54,7 @@ function EditJob() {
     formData.append("description",description);
 
     const response = await axios.post(
-      '${API_URL}/update_job.php',
+      `${API_URL}/update_job.php`,
       formData
     );
 
