@@ -30,6 +30,7 @@ import Profile from "./pages/Profile";
 import EditProfile from "./pages/EditProfile";
 import ViewProfile from "./pages/ViewProfile";
 import MockInterview from "./pages/MockInterview";
+import EditJob from "./pages/EditJob";
 
 import AuthProvider from "./context/AuthContext";
 
@@ -104,9 +105,41 @@ function AppLayout() {
                 </ProtectedRoute>
               }
             />
+            <Route
+              path="/post_jobs"
+              element={
+                <ProtectedRoute>
+                  <AddJob />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/post-jobs"
+              element={
+                <ProtectedRoute>
+                  <AddJob />
+                </ProtectedRoute>
+              }
+            />
 
             <Route
               path="/jobs"
+              element={
+                <ProtectedRoute>
+                  <ViewJobs />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/view-jobs"
+              element={
+                <ProtectedRoute>
+                  <ViewJobs />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/view_jobs"
               element={
                 <ProtectedRoute>
                   <ViewJobs />
@@ -133,6 +166,14 @@ function AppLayout() {
                 </ProtectedRoute>
               }
             />
+            <Route
+              path="/my_applications"
+              element={
+                <ProtectedRoute>
+                  <MyApplications />
+                </ProtectedRoute>
+              }
+            />
 
             {/* PROFILE */}
             <Route
@@ -152,12 +193,46 @@ function AppLayout() {
                 </ProtectedRoute>
               }
             />
+            <Route
+              path="/viewProfile"
+              element={
+                <ProtectedRoute>
+                  <ViewProfile />
+                </ProtectedRoute>
+              }
+            />
 
             <Route
               path="/edit-profile"
               element={
                 <ProtectedRoute>
                   <EditProfile />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/editprofile"
+              element={
+                <ProtectedRoute>
+                  <EditProfile />
+                </ProtectedRoute>
+              }
+            />
+
+            {/* EDIT JOB */}
+            <Route
+              path="/edit-job/:id"
+              element={
+                <ProtectedRoute>
+                  <EditJob />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/edit_job/:id"
+              element={
+                <ProtectedRoute>
+                  <EditJob />
                 </ProtectedRoute>
               }
             />

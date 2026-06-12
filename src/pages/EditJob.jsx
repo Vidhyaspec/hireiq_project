@@ -1,4 +1,4 @@
-import "./AddJob.css";
+import "../styles/addjob.css";
 
 import { useState,useEffect } from "react";
 
